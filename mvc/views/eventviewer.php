@@ -1,0 +1,1 @@
+<?php echo $title."</br>".$des."</br>".$author."</br>".$due_date;?>
