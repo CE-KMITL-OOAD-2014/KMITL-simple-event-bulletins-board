@@ -11,7 +11,6 @@
 	<th><a href="<?php echo base_url(); ?>index.php/fulllist/sortby/author">Author</a></th>
 	<th><a href="<?php echo base_url(); ?>index.php/fulllist/sortby/postdate">Post Date</a></th>
 	<th><a href="<?php echo base_url(); ?>index.php/fulllist/sortby/duedate">Due Date</a></th>
-	
 </tr>
 
 <?php
