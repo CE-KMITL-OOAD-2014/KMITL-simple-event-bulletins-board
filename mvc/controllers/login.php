@@ -1,33 +1,43 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class login extends CI_Controller {
-	public function index()
+	public function index($error = '')
 	{
 		$data['title'] = "LOGIN";
 		$this->load->view('header',$data);
 		$this->load->view('topmenu');
 		
-		$this->load->view('userpanel');
+		$this->load->view('loginpanel');
+		
+		echo $error;
 		
 		$this->load->view('footer');
 	}
 			
 	public function submit(){
-		
-		$data['title'] = "LOGIN RESULT";
-		$this->load->view('header',$data);
-		$this->load->view('topmenu');
-		
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
 		$this->load->model('authen');
-		$this->authen->setForm($this->input->post('username'),$this->input->post('password'));
+		$this->authen->setForm($username,$password);
 		
-		$this->load->database();
 		if($this->authen->loadDB()){
-			if($this->authen->isMatch()) echo "SUCCESS";
-			else echo "fail2</br>";
+			if($this->authen->isPassMatch()) {
+				$user = array(
+					'name'   => 'user',
+					'value'  => $username,
+					'expire' => '3600',
+				);
+				$this->input->set_cookie($user);
+				header("location:".base_url());
+			}
+			else header("location:".base_url()."index.php/login/index/NOpassword");
 		}
-		else echo "fail1</br>";
-		
-		$this->load->view('footer');
+		else header("location:".base_url()."index.php/login/index/NOusername");
+	}
+	
+	public function logout(){
+		$this->load->helper('cookie');
+		$this->input->set_cookie('user','','');
+		header("location:".base_url());
 	}
 }

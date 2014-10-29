@@ -28,6 +28,7 @@ class signup extends CI_model
 	}
 	
 	public function saveForm(){
+		$this->load->database();
 		$this->db->query("INSERT INTO user (username,password,email,passkey) VALUES ('$this->username','$this->password','$this->email','$this->key')");
 	}
 }

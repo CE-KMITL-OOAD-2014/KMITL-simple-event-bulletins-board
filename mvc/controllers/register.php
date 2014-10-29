@@ -3,6 +3,7 @@
 class register extends CI_Controller {
 	public function index()
 	{
+
 		$data['title'] = "Reigster";
 		$this->load->view('header',$data);
 		$this->load->view('topmenu');
@@ -18,15 +19,37 @@ class register extends CI_Controller {
 		
 		$this->load->model('signup');
 		$this->load->model('encryption');
-		$this->load->database();
 		
 		$this->signup->genKey();
-		
 		$this->signup->setForm($this->input->post('username'),$this->encryption->encode($this->input->post('password'),$this->signup->getKey()),$this->input->post('email'));
 		
 		$this->load->database();
 		$this->signup->saveForm();
 		
+		echo 'complete';
+		
 		$this->load->view('footer');
+	}
+	
+	public function tryUsername(){
+		$username = $this->input->post('username');
+		
+		$this->load->model('authen');
+		$getDB = $this->authen->isHave($username ,'username');
+		if($getDB == null){
+			echo 'pass';
+		}
+		else echo 'fail';
+	}
+	
+	public function tryEmail(){
+		$email = $this->input->post('email');
+		
+		$this->load->model('authen');
+		$getDB = $this->authen->isHave($email ,'email');
+		if($getDB == null){
+			echo 'pass';
+		}
+		else echo 'fail';
 	}
 }

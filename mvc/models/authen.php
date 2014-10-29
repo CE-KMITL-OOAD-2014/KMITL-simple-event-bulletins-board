@@ -11,8 +11,8 @@ class authen extends CI_model
 		$this->password = $password;
 	}
 	public function loadDB(){
-		$getDB = $this->db->query("SELECT username,password,passkey FROM user WHERE username='$this->username'");
-		if($getDB->num_rows() > 0){
+		$getDB = $this->isHave($this->username ,'username');
+		if($getDB !== null){
 			$row = $getDB->row();
 			$this->code = $row->password;
 			$this->key = $row->passkey;
@@ -21,7 +21,17 @@ class authen extends CI_model
 		return false;
 	}
 	
-	public function isMatch(){
+	public function isHave($str , $type){
+		$this->load->database();
+		$getDB = $this->db->query("SELECT * FROM user WHERE $type='$str'");
+		if($getDB->num_rows() > 0){
+			return $getDB;
+		}
+		return null;
+	}
+	
+	
+	public function isPassMatch(){
 		$this->load->model('encryption');
 		if($this->encryption->decode($this->code,$this->key) === $this->password) return true;
 		return false;
