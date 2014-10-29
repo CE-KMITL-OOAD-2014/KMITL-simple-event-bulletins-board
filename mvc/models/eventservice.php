@@ -30,6 +30,8 @@ class eventservice extends CI_model
 		$tmp_duedate = $this->tmp_event['duedate'];
 		if($id === -1)
 			$this->db->query("INSERT INTO event (title,des,image,author,postdate,duedate) VALUES ('$tmp_title','$tmp_des','$tmp_image','$tmp_author','$tmp_postdate','$tmp_duedate')");
+		else
+			$this->db->query("UPDATE event SET title='$tmp_title',des='$tmp_des',image='$tmp_image',postdate='$tmp_postdate',duedate='$tmp_duedate' WHERE id='$id'");
 	}
 }
 ?>

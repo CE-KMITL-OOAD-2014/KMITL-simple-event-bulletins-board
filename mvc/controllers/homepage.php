@@ -7,8 +7,6 @@ class Homepage extends CI_Controller {
 		$this->load->view('header',$data);
 		$this->load->view('topmenu');
 		
-		
-		$this->load->database();
 		$this->load->model('listservice');	
 		
 		$this->input->set_cookie('search','','');

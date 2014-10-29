@@ -7,7 +7,6 @@ class fulllist extends CI_Controller {
 		$this->load->view('header',$data);
 		$this->load->view('topmenu');
 		
-		$this->load->database();
 		$this->load->model('listservice');
 		
 		$this->listservice->setSearchQurey($this->input->get('keyword'),$this->input->get('from'));
@@ -16,6 +15,8 @@ class fulllist extends CI_Controller {
 		$this->load->view('fulleventlist' ,$listing);
 
 		$this->load->view('footer');
+		
+		$this->input->set_cookie('search',$this->input->get('keyword')."|".$this->input->get('from')."|".$this->input->get('sort')."|".$this->input->get('desc'),'1200');
 	}
 	
 	public function sortby($type){
@@ -24,8 +25,7 @@ class fulllist extends CI_Controller {
 		$from = $search[1];
 		$sort = $search[2];
 		$desc = $search[3];
-		if($keyword === ' ') $keyword = '';
-		if($from === ' ') $from = '';
+		
 		if($sort !== $type) {
 			$sort = $type;
 			$desc = 'DESC';

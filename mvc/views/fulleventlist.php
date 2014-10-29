@@ -1,5 +1,5 @@
 </br><center>
-<form method="POST" action="<?php echo base_url()?>index.php/fulllist">
+<form method="GET" action="<?php echo base_url()?>index.php/fulllist">
 	<input type="search" name="keyword">
 	<input type="submit" value="Search">
 </form></center>
@@ -11,6 +11,7 @@
 	<th><a href="<?php echo base_url(); ?>index.php/fulllist/sortby/author">Author</a></th>
 	<th><a href="<?php echo base_url(); ?>index.php/fulllist/sortby/postdate">Post Date</a></th>
 	<th><a href="<?php echo base_url(); ?>index.php/fulllist/sortby/duedate">Due Date</a></th>
+	
 </tr>
 
 <?php
