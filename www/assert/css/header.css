@@ -1,0 +1,26 @@
+body{
+    background-color: #F5F4EA;
+}
+#menu{
+background-color: #caf8b7;
+width: 100%;
+height: auto;
+padding: 10px;
+float: right;
+}
+
+#menu .vform{float: right;}
+#search{
+    max-width: 70px;
+}
+article{
+    min-height: 27em;
+    
+}
+.box{
+    background-color: white;
+    border-radius: 5px;
+
+    padding: 25px;
+    box-shadow:2px 2px 2px 0px rgba(50, 50, 50, 0.50);
+}
