@@ -1,5 +1,16 @@
 <?php
+/**
+ * encryption Class
+ *
+ * class for encode/decode password
+ *
+ */
 class encryption extends CI_model{
+	/**
+	 * encode input to encrypt string
+	 *
+	 * @return	encrypt string
+	 */
 	function encode($string,$key) {
 		$hash = "";
 		$key = sha1($key);
@@ -15,7 +26,14 @@ class encryption extends CI_model{
 		}
     return $hash;
 	}
-
+	
+	// --------------------------------------------------------------------
+	
+	/**
+	 * decode input to real string
+	 *
+	 * @return real decypt string
+	 */
 	function decode($string,$key) {
 		$hash = "";
 		$key = sha1($key);
@@ -31,5 +49,8 @@ class encryption extends CI_model{
 		}
 		return $hash;
 	}
+	
+	// --------------------------------------------------------------------
+	
 }
 ?>
