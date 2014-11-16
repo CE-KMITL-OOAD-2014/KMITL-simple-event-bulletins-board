@@ -1,11 +1,13 @@
-</br><center>
-<form method="GET" action="<?php echo base_url()?>index.php/fulllist">
-	<input type="search" name="keyword">
-	<input type="submit" value="Search">
+
+<section>
+<center class="row space-bot">
+<form method="GET" action="<?php echo base_url()?>index.php/fulllist" class="vform c4 centered" name="Search2">
+	<input type="search" name="keyword" class="post">
+     <span type="submit" class="post c3" id="search" onclick="Search2.submit()">Search</span>
 </form></center>
 
-<div id="list">
-<table>
+<div id="list" class="grid space-bot">
+<table style="background:white;">
 <tr>
 	<th><a href="<?php echo base_url(); ?>index.php/fulllist/sortby/title">Title</a></th>
 	<th><a href="<?php echo base_url(); ?>index.php/fulllist/sortby/author">Author</a></th>
@@ -15,21 +17,22 @@
 </tr>
 
 <?php
-	if ($eventlist->num_rows() > 0)
+	if(count($eventlist) === 0) echo '<br><br> <center>ไม่พบคำค้นที่ต้องการ</center> <br><br>';
+	else{
+	foreach ($eventlist as $row)
 	{
-		foreach ($eventlist->result() as $row)
-		{	
-			echo '<tr><td><a href="'.base_url().'index.php/show/index/'.$row->id.'">';
-			echo $row->title;
-			echo "</a></td><td>";
-			echo $row->author;
-			echo "</td><td>";
-			echo $row->postdate;
-			echo "</td><td>";
-			echo $row->duedate;
-			echo "</td></tr>";
-		}
+		echo '<tr><td><a href="'.base_url().'index.php/show/index/'.$row->id.'">';
+		echo $row->title;
+		echo "</a></td><td>";
+		echo $row->author;
+		echo "</td><td>";
+		echo $row->postdate;
+		echo "</td><td>";
+		echo $row->duedate;
+		echo "</td></tr>";
+	}
 	}
 ?>
 </table>
-</div>
+
+</div>    </section>

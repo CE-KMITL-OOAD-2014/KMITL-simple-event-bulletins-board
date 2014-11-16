@@ -11,9 +11,8 @@ Event List
 	<th>Del</th>
 </tr>
 <?php
-	if ($eventlist->num_rows() > 0)
-	{
-		foreach ($eventlist->result() as $row)
+
+		foreach ($eventlist as $row)
 		{	
 			echo '<tr><td>';
 			echo $row->id;
@@ -29,11 +28,12 @@ Event List
 			echo "<input type='radio' name='eventdelselect' value='".$row->id."'>";
 			echo "</td></tr>";
 		}
-	}
+
 ?>
 </table>
 <input type="submit" value="Delete Event">
 </div>
 </form>
+<br>
 
 

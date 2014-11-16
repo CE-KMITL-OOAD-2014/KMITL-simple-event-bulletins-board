@@ -1,13 +1,23 @@
-<center><?php echo $title; ?></center>
-<hr width='85%' />
-</br></br>
-<img src="<?php echo $image; ?>" width="300" height="200"></img>
-</br></br>
+
+<section class="box">
+    <center> <h1 class="row centered"><?php echo $title; ?></h1></center>
+<hr/>
+<p>
+	<?php if($image==='') echo '<img src="'.base_url().'assert/noimg.jpg" width="350" height="500"></img>';
+		else echo '<img src="'.$image.'" width="350" height="500"></img>';
+	?>
+</p>
+<p>
 <?php echo $des; ?>
-</br></br>
+</p>
+<br/><br/><br/>
+<p>
 By: <?php echo $author; ?>
-</br></br>
-</br>
+</p><p>
 Post Date:  <?php echo $postdate; ?>
-<br>
+</p>
+<p>
 Due Date:  <?php echo $duedate; ?>
+</p>
+
+</section>
